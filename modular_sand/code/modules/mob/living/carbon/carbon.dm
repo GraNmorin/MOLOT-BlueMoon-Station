@@ -56,3 +56,27 @@
 		stoplag(1)
 	stoplag(2)
 	Destroy()
+
+/mob/living/proc/pregoodbyep(C)
+	if(isanimal(C))
+		var/mob/living/simple_animal/D = C
+		D.toggle_ai(AI_OFF)
+	AllImmobility(900, TRUE, TRUE) // Complete 15 minutes of stun, hopefully they shouldn't take that long
+	playsound(C, "modular_sand/sound/effects/admin_punish/oblya.ogg", 100, FALSE)
+	say("Oooooo bljaaaa")
+	stoplag(20)
+	playsound(C, "modular_sand/sound/effects/admin_punish/myfinalmessage.ogg", 100, FALSE)
+	say("My final message")
+	stoplag(20)
+	playsound(C, "modular_sand/sound/effects/admin_punish/goodbye.ogg", 100, FALSE)
+	say("Goodbye.")
+	stoplag(20)
+	playsound(C, "modular_sand/sound/effects/admin_punish/endjingle.ogg", 100, FALSE)
+	goodbye()
+
+/mob/living/proc/goodbyep() //this must be separate because it's a loop!
+	while(alpha >= 10)
+		alpha = alpha - 7
+		stoplag(1)
+	stoplag(2)
+	Destroy()
